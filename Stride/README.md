@@ -89,11 +89,11 @@ Check the state of the validator blocks at the initial stage
 ```
 cd && cat .stride/data/priv_validator_state.json
 ```
-{
+`{
   "height": "0",
   "round": 0,
   "step": 0
-}
+}`
 
 If the values above are not equal to zero, then execute the command, but if they are equal to zero, then skip this step
 ```
