@@ -99,3 +99,7 @@ If the values above are not equal to zero, then execute the command, but if they
 ```
 strided tendermint unsafe-reset-all --home $HOME/.stride
 ```
+Download the Addrbook
+```
+wget -O $HOME/.stride/config/addrbook.json "https://raw.githubusercontent.com/doxe1/testnet-manuals-doxe/Stride/addrbook.json"
+```
