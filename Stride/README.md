@@ -77,11 +77,11 @@ Initialize a node to create the necessary configuration files
 ```
 strided init <name_moniker> --chain-id STRIDE-1
 ```
-Download Genesis file
+Download `genesis file`
 ```
 wget -O $HOME/.stride/config/genesis.json "https://raw.githubusercontent.com/Stride-Labs/testnet/main/poolparty/genesis.json"
 ```
-Check version of a genesis file
+Check version of a `genesis file`
 ```
 sha256sum ~/.stride/config/genesis.json
 ```
@@ -99,7 +99,94 @@ If the values above are not equal to zero, then execute the command, but if they
 ```
 strided tendermint unsafe-reset-all --home $HOME/.stride
 ```
-Download the Addrbook
+Download the `addrbook file`
 ```
 wget -O $HOME/.stride/config/addrbook.json "https://raw.githubusercontent.com/doxe1/testnet-manuals-doxe/Stride/addrbook.json"
+```
+## Setting up the node configuration
+Edit the config so that we no longer use the `chain-id` flag for each CLI command in client.toml
+```
+strided config chain-id STRIDE-1
+```
+If necessary, configure the keyring-backend in `client.toml`
+```
+strided config keyring-backend os
+```
+Setting the minimum price for gas in `app.toml`
+```
+sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.0025ustrd\"/;" ~/.stride/config/app.toml
+```
+Add seeds/bpeers/peers to `config.toml`
+```
+external_address=$(wget -qO- eth0.me)
+sed -i.bak -e "s/^external_address *=.*/external_address = \"$external_address:26656\"/" $HOME/.stride/config/config.toml
+```
+```
+peers="b11187784240586475422b132a3dcbc970a996dd@stride-node1.poolparty.stridenet.co:26656,2312417b613c44164bf167cb232795e7d8815be7@65.108.76.44:11523,84ff28824a911409e2c24f2f5ede87ae1b859b5f@5.189.178.222:46656"
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.stride/config/config.toml
+```
+```
+seeds="baee9ccc2496c2e3bebd54d369c3b788f9473be9@seedv1.poolparty.stridenet.co:26656"
+```
+Increase the number of incoming and outgoing peers for the connection, except for persistent peers in `config.toml`
+```
+sed -i 's/max_num_inbound_peers =.*/max_num_inbound_peers = 100/g' $HOME/.stride/config/config.toml
+sed -i 's/max_num_outbound_peers =.*/max_num_outbound_peers = 100/g' $HOME/.stride/config/config.toml
+```
+**(Optional)** Configure pruning with one command `app.toml`
+```
+pruning="custom" && \
+pruning_keep_recent="100" && \
+pruning_keep_every="0" && \
+pruning_interval="50" && \
+sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.stride/config/app.toml && \
+sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.stride/config/app.toml && \
+sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.stride/config/app.toml && \
+sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.stride/config/app.toml
+```
+**(Optional)** Turn off indexing in `config.toml`
+```
+indexer="null" && \
+sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.stride/config/config.toml
+```
+**(Optional)** On/off snapshots in `app.toml`
+```
+snapshot_interval=1000 && \
+sed -i.bak -e "s/^snapshot-interval *=.*/snapshot-interval = \"$snapshot_interval\"/" ~/.stride/config/app.toml
+```
+By default snapshots are disabled `snapshot-interval=0`
+## Create a service file
+```
+sudo tee /etc/systemd/system/strided.service > /dev/null <<EOF
+[Unit]
+Description=strided
+After=network-online.target
+
+[Service]
+User=$USER
+ExecStart=$(which strided) start
+Restart=on-failure
+RestartSec=3
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+```
+sudo systemctl daemon-reload && \
+sudo systemctl enable strided && \
+sudo systemctl restart strided && sudo journalctl -u strided -f -o cat
+```
+:heavy_exclamation_mark:If after start the node cannot connect to peers for a long time, then look for new peers or ask for addrbook.json in discord and so on:heavy_exclamation_mark:
+
+Stop the node, delete the address book and reset node
+```
+sudo systemctl stop strided
+rm $HOME/.stride/config/addrbook.json
+strided tendermint unsafe-reset-all --home $HOME/.stride
+```
+Restart the node
+```
+sudo systemctl restart strided && journalctl -u strided -f -o cat
 ```
