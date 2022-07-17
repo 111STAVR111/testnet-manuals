@@ -190,3 +190,36 @@ Restart the node
 ```
 sudo systemctl restart strided && journalctl -u strided -f -o cat
 ```
+Create or restore the wallet and save the memnomics and other information as needed
+
+:heavy_exclamation_mark:Don't forget to save yourself a memo, because you are responsible for your wallet:heavy_exclamation_mark:
+
+Set up a wallet
+```
+strided keys add <name_wallet> --keyring-backend os
+```
+Recover a wallet
+```
+strided keys add <name_wallet> --recover --keyring-backend os
+```
+Connect ledger wallet
+```
+strided keys add <name_wallet> --ledger 
+```
+Create a validator
+
+:heavy_exclamation_mark:Don't forget to save `priv_validator_key.json` 
+```
+strided tx staking create-validator \
+--chain-id STRIDE-1 \
+--commission-rate 0.05 \
+--commission-max-rate 0.2 \
+--commission-max-change-rate 0.1 \
+--min-self-delegation "1000000" \
+--amount 1000000ustrd \
+--pubkey $(strided tendermint show-validator) \
+--moniker "<name_moniker>" \
+--from <name_wallet> \
+--fees 555ustrd
+```
+
