@@ -275,3 +275,4 @@ cd $HOME && \
 rm -rf .stride stride && \
 rm -rf $(which strided)
 ```
+<img src="https://github.com/doxe1/useful-cmd/blob/main/29eb26f376d3b48d61bce09590fff717.png" width="350">
