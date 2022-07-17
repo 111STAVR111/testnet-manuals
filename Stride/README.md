@@ -222,4 +222,43 @@ strided tx staking create-validator \
 --from <name_wallet> \
 --fees 555ustrd
 ```
+## Useful Commands
 
+Check block heights
+```
+strided status 2>&1 | jq ."SyncInfo"."latest_block_height"
+```
+Check logs (all logs and the last 100 lines)
+```
+sudo journalctl -u strided -f -o cat
+sudo journalctl --lines=100 --follow --unit strided
+```
+Check status
+```
+curl localhost:26657/status
+```
+Check a balance of the wallet
+```
+strided q bank balances <address>
+```
+Collect commissions + rewards
+```
+strided tx distribution withdraw-rewards <valoper_address> --from <name_wallet> --fees 500ustrd --commission -y
+```
+Delegate some more coins to yourself (for example, 1 coin is sent)
+```
+strided tx staking delegate <valoper_address> 1000000ustrd --from <name_wallet> --fees 500ustrd -y
+```
+Send coins to another address
+```
+strided tx bank send <name_wallet> <address> 1000000ustrd --fees 500ustrd -y
+```
+Get out of jail
+```
+strided tx slashing unjail --from <name_wallet> --fees 500ustrd -y
+```
+Display a list of wallets
+```
+strided keys list
+```
+Vote for the proposal 
