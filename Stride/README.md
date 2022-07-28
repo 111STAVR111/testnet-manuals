@@ -1,4 +1,4 @@
-# stride node setup - STRIDE-1
+# Stride node setup - STRIDE-TESTNET-2
 Official documentation:
 
 > Validator setup instructions:
@@ -11,7 +11,7 @@ https://poolparty.stride.zone/
 
 > Network Chain ID
 
-STRIDE-1
+STRIDE-TESTNET-2
 
 > Denom: 
 
