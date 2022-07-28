@@ -73,9 +73,12 @@ go version
 :heavy_exclamation_mark:IMPORTANT - in the commands below, change everything in <> to your value and remove <>:heavy_exclamation_mark:
 
 ```
-git clone https://github.com/Stride-Labs/stride.git && cd stride
-git checkout c53f6c562d9d3e098aab5c27303f41ee055572cb
-sh ./scripts-local/build.sh -s $HOME/go/bin
+cd $HOME
+git clone https://github.com/Stride-Labs/stride.git
+cd stride
+git checkout 3cb77a79f74e0b797df5611674c3fbd000dfeaa1
+make build
+sudo cp $HOME/stride/build/strided /usr/local/bin
 ```
 Check version
 ```
