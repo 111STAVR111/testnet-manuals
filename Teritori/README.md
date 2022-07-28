@@ -109,7 +109,7 @@ teritorid tendermint unsafe-reset-all --home $HOME/.teritorid
 ```
 Download the `addrbook file`
 ```
-
+wget -O $HOME/.teritorid/config/addrbook.json "https://raw.githubusercontent.com/doxe1/testnet-manuals-doxe/Teritori/addrbook.json"
 ```
 ## Setting up the node configuration
 Edit the config so that we no longer use the `chain-id` flag for each CLI command in client.toml
