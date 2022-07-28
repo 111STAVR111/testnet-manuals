@@ -1,4 +1,4 @@
-# Stride node setup - STRIDE-TESTNET-2
+# Teritori node setup - teritori-testnet-v2
 Official documentation:
 
 > Validator setup instructions:
