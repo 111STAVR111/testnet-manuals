@@ -86,7 +86,7 @@ strided version --long | head
 ```
 Initialize a node to create the necessary configuration files
 ```
-strided init <name_moniker> --chain-id STRIDE-1
+strided init <name_moniker> --chain-id STRIDE-TESTNET-2
 ```
 Download `genesis file`
 ```
@@ -117,7 +117,7 @@ wget -O $HOME/.stride/config/addrbook.json "https://raw.githubusercontent.com/do
 ## Setting up the node configuration
 Edit the config so that we no longer use the `chain-id` flag for each CLI command in client.toml
 ```
-strided config chain-id STRIDE-1
+strided config chain-id STRIDE-TESTNET-2
 ```
 If necessary, configure the keyring-backend in `client.toml`
 ```
