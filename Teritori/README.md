@@ -3,7 +3,7 @@ Official documentation:
 
 > Validator setup instructions:
 
-
+https://github.com/TERITORI/teritori-chain/tree/main/testnet/teritori-testnet-v2
 
 > Explorer:
 
