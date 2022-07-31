@@ -6,3 +6,5 @@ When the validator node stops processing blocks and misses enough blocks. In thi
 
 ### > Double signature
 When the validator signs two identical blocks at the same height. In this case, the validator is imprisoned and can't get out of it. The share of the jailed funds is reduced by 5 percent. Double signing can happen if one `priv_validator_key.json` file is used on different servers, which is categorically not allowed.
+
+## Let's get started
