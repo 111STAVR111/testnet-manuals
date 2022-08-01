@@ -14,7 +14,7 @@ Next, we need to prepare **2 server** and run a node on it without validator and
 
 > Validator setup instructions: https://github.com/doxe1/testnet-manuals/tree/main/Stride
 
-**Important! After creating the service file, we just wait. Noda on 2 server should catch up completely with the blockchain**
+**Important! After creating the service file, we just wait. Node on 2 server should catch up completely with the blockchain**
 ```
 strided status 2>&1 | jq ."SyncInfo"."latest_block_height"
 ```
@@ -22,3 +22,7 @@ After the node on server2 is fully synchronized, restore the wallet:
 ```
 strided keys add <name_wallet> --recover --keyring-backend os
 ```
+Now the most important step, which must be done very quickly. We will need to stop the nodes on both servers and replace the priv_validator_key.json file on second server. 
+
+:heavy_exclamation_mark:**Again, stop the service on first server and on the second server**:heavy_exclamation_mark:
+
