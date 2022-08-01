@@ -22,7 +22,23 @@ After the node on server2 is fully synchronized, restore the wallet:
 ```
 strided keys add <name_wallet> --recover --keyring-backend os
 ```
-Now the most important step, which must be done very quickly. We will need to stop the nodes on both servers and replace the priv_validator_key.json file on second server. 
+Now the most important step, which must be done very quickly. We will need to stop the nodes on both servers and replace the `priv_validator_key.json` file on second server. 
 
 :heavy_exclamation_mark:**Again, stop the service on first server and on the second server**:heavy_exclamation_mark:
 
+Stopping a node on 1 server
+```
+sudo systemctl stop strided
+```
+Stopping a node on 2 server
+```
+sudo systemctl stop strided
+```
+Delete `priv_validator_key.json` from on 2 server manually or with the command
+```
+cd $HOME/.stride/config/ && rm -vf priv_validator_key.json
+```
+Then transfer the previously copied `priv_validator_key.json` file from 1 server on 2 server and run the node on server 2.
+```
+sudo systemctl restart strided && sudo journalctl -u strided -f -o cat
+```
