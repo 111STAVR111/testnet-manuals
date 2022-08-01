@@ -42,3 +42,16 @@ Then transfer the previously copied `priv_validator_key.json` file from 1 server
 ```
 sudo systemctl restart strided && sudo journalctl -u strided -f -o cat
 ```
+If everything is done correctly, the validator will continue to process blocks, which you can see in explorer
+
+![image](https://user-images.githubusercontent.com/84589100/182164202-ab5f15c7-ef7c-4307-b957-17663f2a0474.png)
+
+You can also use the following command to check if a validator is in jail
+```
+strided query staking validator <stridevaloper1p6w...>
+```
+If you're in jail, you can get out like this
+```
+strided tx slashing unjail --from <name_wallet> --fees 500ustrd -y
+```
+After you have succeeded, you can delete server1 completely, or at least the priv_validator_key.json file from it, to avoid double signature!
