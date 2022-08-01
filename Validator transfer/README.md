@@ -8,3 +8,17 @@ When the validator node stops processing blocks and misses enough blocks. In thi
 When the validator signs two identical blocks at the same height. In this case, the validator is imprisoned and can't get out of it. The share of the jailed funds is reduced by 5 percent. Double signing can happen if one `priv_validator_key.json` file is used on different servers, which is categorically not allowed.
 
 ## Let's get started
+We need 2 servers, **1 server** is already running validator, which is in the active network. Initially we need to download from **first server** `priv_validator_key.json` file to our computer and have seed phrase to restore the wallet.
+
+Next, we need to prepare **2 server** and run a node on it without validator and wallet (in our example Stride), to do this:
+
+> Validator setup instructions: https://github.com/doxe1/testnet-manuals/tree/main/Stride
+
+**Important! After creating the service file, we just wait. Noda on 2 server should catch up completely with the blockchain**
+```
+strided status 2>&1 | jq ."SyncInfo"."latest_block_height"
+```
+After the node on server2 is fully synchronized, restore the wallet:
+```
+strided keys add <name_wallet> --recover --keyring-backend os
+```
