@@ -266,7 +266,7 @@ strided tx slashing unjail --from <name_wallet> --fees 500ustrd -y
 ```
 Display a list of wallets
 ```
-strided keys list
+rebusd keys list
 ```
 Vote for the proposal 
 ```
