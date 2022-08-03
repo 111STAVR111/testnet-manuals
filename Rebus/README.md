@@ -191,7 +191,7 @@ Stop the node, delete the address book and reset node
 ```
 sudo systemctl stop rebusd
 rm $HOME/.rebusd/config/addrbook.json
-strided tendermint unsafe-reset-all --home $HOME/.rebusd
+rebusd tendermint unsafe-reset-all --home $HOME/.rebusd
 ```
 Restart the node
 ```
