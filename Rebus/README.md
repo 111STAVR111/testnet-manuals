@@ -1,4 +1,4 @@
-# Stride node setup - STRIDE-TESTNET-2
+# Rebus node setup - reb_3333-1
 Official documentation:
 
 > Validator setup instructions:
