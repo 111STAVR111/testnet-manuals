@@ -164,7 +164,7 @@ sed -i.bak -e "s/^snapshot-interval *=.*/snapshot-interval = \"$snapshot_interva
 By default snapshots are disabled `snapshot-interval=0`
 ## Create a service file
 ```
-sudo tee /etc/systemd/system/strided.service > /dev/null <<EOF
+sudo tee /etc/systemd/system/rebusd.service > /dev/null <<EOF
 [Unit]
 Description=rebusd
 After=network-online.target
