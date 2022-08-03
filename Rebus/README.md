@@ -270,7 +270,7 @@ strided keys list
 ```
 Vote for the proposal 
 ```
-strided tx gov vote 1 yes --from <name_wallet> --fees 555ustrd
+rebusd tx gov vote 1 yes --from <name_wallet> --fees 555ustrd
 ```
 Delete a node
 ```
