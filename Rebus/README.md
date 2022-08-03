@@ -274,11 +274,11 @@ rebusd tx gov vote 1 yes --from <name_wallet> --fees 555ustrd
 ```
 Delete a node
 ```
-sudo systemctl stop strided && \
-sudo systemctl disable strided && \
-rm /etc/systemd/system/strided.service && \
+sudo systemctl stop rebusd && \
+sudo systemctl disable rebusd && \
+rm /etc/systemd/system/rebusd.service && \
 sudo systemctl daemon-reload && \
 cd $HOME && \
-rm -rf .stride stride && \
-rm -rf $(which strided)
+rm -rf .rebusd rebus.core && \
+rm -rf $(which rebusd)
 ```
