@@ -262,7 +262,7 @@ strided tx bank send <name_wallet> <address> 1000000ustrd --fees 500ustrd -y
 ```
 Get out of jail
 ```
-strided tx slashing unjail --from <name_wallet> --fees 500ustrd -y
+rebusd tx slashing unjail --from <name_wallet> --fees 500ustrd -y
 ```
 Display a list of wallets
 ```
