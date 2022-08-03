@@ -168,7 +168,7 @@ By default snapshots are disabled `snapshot-interval=0`
 ```
 sudo tee /etc/systemd/system/teritorid.service > /dev/null <<EOF
 [Unit]
-Description=strided
+Description=teritorid
 After=network-online.target
 
 [Service]
@@ -193,7 +193,7 @@ Stop the node, delete the address book and reset node
 ```
 sudo systemctl stop teritorid
 rm $HOME/.teritorid/config/addrbook.json
-strided tendermint unsafe-reset-all --home $HOME/.teritorid
+teritorid tendermint unsafe-reset-all --home $HOME/.teritorid
 ```
 Restart the node
 ```
