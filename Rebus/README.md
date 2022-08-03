@@ -82,7 +82,7 @@ make install
 ```
 Check version
 ```
-strided version --long | head
+rebusd version --long | head
 ```
 Initialize a node to create the necessary configuration files
 ```
