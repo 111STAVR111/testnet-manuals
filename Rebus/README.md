@@ -258,7 +258,7 @@ strided tx staking delegate <valoper_address> 1000000ustrd --from <name_wallet> 
 ```
 Send coins to another address
 ```
-strided tx bank send <name_wallet> <address> 1000000ustrd --fees 500ustrd -y
+rebusd tx bank send <name_wallet> <address> 1000000ustrd --fees 500ustrd -y
 ```
 Get out of jail
 ```
