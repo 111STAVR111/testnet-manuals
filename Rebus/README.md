@@ -254,7 +254,7 @@ rebusd tx distribution withdraw-rewards <valoper_address> --from <name_wallet> -
 ```
 Delegate some more coins to yourself (for example, 1 coin is sent)
 ```
-strided tx staking delegate <valoper_address> 1000000ustrd --from <name_wallet> --fees 500ustrd -y
+rebusd tx staking delegate <valoper_address> 1000000ustrd --from <name_wallet> --fees 500ustrd -y
 ```
 Send coins to another address
 ```
