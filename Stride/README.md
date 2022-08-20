@@ -11,7 +11,7 @@ https://poolparty.stride.zone/
 
 > Network Chain ID
 
-STRIDE-TESTNET-2
+STRIDE-TESTNET-4
 
 > Denom: 
 
