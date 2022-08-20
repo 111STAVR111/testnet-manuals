@@ -73,12 +73,11 @@ go version
 :heavy_exclamation_mark:IMPORTANT - in the commands below, change everything in <> to your value and remove <>:heavy_exclamation_mark:
 
 ```
-cd $HOME
-git clone https://github.com/Stride-Labs/stride.git
-cd stride
-git checkout 3cb77a79f74e0b797df5611674c3fbd000dfeaa1
-make build
-sudo cp $HOME/stride/build/strided /usr/local/bin
+git clone https://github.com/Stride-Labs/stride && cd stride
+git checkout cf4e7f2d4ffe2002997428dbb1c530614b85df1b
+mkdir -p $HOME/go/bin
+go build -mod=readonly -trimpath -o $HOME/go/bin ./...
+strided version --long | head
 ```
 Check version
 ```
@@ -86,7 +85,7 @@ strided version --long | head
 ```
 Initialize a node to create the necessary configuration files
 ```
-strided init <name_moniker> --chain-id STRIDE-TESTNET-2
+strided init <name_moniker> --chain-id STRIDE-TESTNET-4
 ```
 Download `genesis file`
 ```
@@ -117,7 +116,7 @@ wget -O $HOME/.stride/config/addrbook.json "https://raw.githubusercontent.com/do
 ## Setting up the node configuration
 Edit the config so that we no longer use the `chain-id` flag for each CLI command in client.toml
 ```
-strided config chain-id STRIDE-TESTNET-2
+strided config chain-id STRIDE-TESTNET-4
 ```
 If necessary, configure the keyring-backend in `client.toml`
 ```
@@ -222,7 +221,7 @@ Create a validator
 :heavy_exclamation_mark:Don't forget to save `priv_validator_key.json` 
 ```
 strided tx staking create-validator \
---chain-id STRIDE-1 \
+--chain-id STRIDE-TESTNET-4 \
 --commission-rate 0.05 \
 --commission-max-rate 0.2 \
 --commission-max-change-rate 0.1 \
