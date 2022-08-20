@@ -1,4 +1,4 @@
-# Stride node setup - STRIDE-TESTNET-2
+# Stride node setup - STRIDE-TESTNET-4
 Official documentation:
 
 > Validator setup instructions:
